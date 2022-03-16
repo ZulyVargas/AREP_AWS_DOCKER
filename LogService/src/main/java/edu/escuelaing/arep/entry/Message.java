@@ -9,15 +9,23 @@ import java.util.Date;
 public class Message {
 
     private String content;
-    private Date date;
+    private String date;
 
+    /**
+     * Construct a new message with date system.
+     * @param content - content of the message.
+     */
+    public Message(String content){
+        this.content=content;
+        this.date =java.time.LocalDate.now().toString();
+    }
 
     /**
      * Construct a new message
      * @param content - content of the message.
      * @param date - insertion date.
      */
-    public Message(String content, Date date){
+    public Message(String content, String date){
         this.content  = content;
         this.date = date;
     }
@@ -42,7 +50,7 @@ public class Message {
      * Return to message date.
      * @return date - message date.
      */
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -50,7 +58,7 @@ public class Message {
      * Updates the message date.
      * @param date - new message date.
      */
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

@@ -1,14 +1,16 @@
 package edu.escuelaing.arep.database;
 
 
+import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientURI;
-import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
+import com.mongodb.client.*;
 import com.mongodb.client.MongoCollection;
 import edu.escuelaing.arep.entry.Message;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -19,25 +21,38 @@ import java.util.Date;
  */
 
 public class ConnectionMongoDB {
-    MongoClientURI uri;
+    String uri;
     MongoClient mongoClient;
 
 
     /**
      * Create the connection to the database.
      */
-    public ConnectionMongoDB(){
+    public ConnectionMongoDB() throws ParseException {
         //https://programmerclick.com/article/8253664516/
 
-        uri = new MongoClientURI("mongodb+srv://admin:admin@cluster0.ko7ci.mongodb.net/messages?retryWrites=true&w=majority");
-        mongoClient = new MongoClient(uri);
+        uri = "mongodb+srv://admin:admin@cluster0.ko7ci.mongodb.net/?retryWrites=true&w=majority";
+
+        //mongoClient = new MongoClient(uri);
+
+        ConnectionString connection = new ConnectionString(uri);
+        this.mongoClient = MongoClients.create(connection);
+        getTenMessages();
+
+        /*for (int count = 10 ;  count <= 10; count-- ){
+            if (count < messages.size() )System.out.println(messages.get(count));
+        }*/
+
+
+
     }
     /**
      * Inserts a message in the database.
      * @param message - message to insert.
      */
     public void insertMessage(Message message){
-        mongoClient = new MongoClient(uri);
+        MongoDatabase mongoDatabase = mongoClient.getDatabase("lab4");
+        //mongoClient = new MongoClient(uri);
         MongoDatabase db = mongoClient.getDatabase("lab4");
         MongoCollection<Document> collection = db.getCollection("messages");
         Document  document =new Document();
@@ -58,14 +73,17 @@ public class ConnectionMongoDB {
         ArrayList<Message> messages = new ArrayList<Message>();
         findIterable.into(documents);
         for (Document doc : documents) {
-            if (doc.get("info") != null && doc.get("date") != null) {
-                messages.add(new Message((String) doc.get("info"), (Date) doc.get("date")));
+            if (doc.get("content") != null && doc.get("date") != null) {
+                messages.add(new Message((String) doc.get("content"), (String)doc.get("date")));
+                //System.out.println("----Mensaje     "+ doc.get("content") + (Date) doc.get("date")) ;
             }
         }
         ArrayList<Message> messagesToShow = new ArrayList<Message>();
 
-        for (int count = 10 ;  count <= 10; count-- ){
-            if (count < messages.size() )messagesToShow.add(messages.get(count));
+        for (int count = 10 ;  count >0 && count <= 10; count -- ){
+            if (count < messages.size() ){
+                messagesToShow.add(messages.get(count));
+                System.out.println("----Mensaje     "+ messagesToShow.get(0).getDate() + messagesToShow.get(0).getContent()) ;}
         }
         return messagesToShow;
     }
