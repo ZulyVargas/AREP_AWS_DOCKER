@@ -37,9 +37,6 @@ public class ConnectionMongoDB {
 
         ConnectionString connection = new ConnectionString(uri);
         this.mongoClient = MongoClients.create(connection);
-        getTenMessages();
-        insertMessage(new Message("Este es el mensaje de prueba de inserción"));
-
         /*for (int count = 10 ;  count <= 10; count-- ){
             if (count < messages.size() )System.out.println(messages.get(count));
         }*/

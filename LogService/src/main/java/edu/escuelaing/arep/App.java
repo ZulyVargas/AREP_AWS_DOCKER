@@ -20,11 +20,10 @@ public class App
         get("/messages", (req, res) -> {
             res.status(200);
             res.type("application/json");
-            System.out.println( "Esyoy obteniendo los mensajes" );
+            System.out.println( "Estoy obteniendo los mensajes" );
             return new Gson().toJson(connection.getTenMessages());
         });
         post("/messages", (req, res) -> {
-
             Message newMessage = new Message(req.body());
             connection.insertMessage(newMessage);
             return null;
