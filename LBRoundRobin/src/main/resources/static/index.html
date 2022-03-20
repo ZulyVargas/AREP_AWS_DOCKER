@@ -6,20 +6,30 @@
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <title>Mensajes al instante</title>
-
-      <link rel="stylesheet" href="css/archivo.css" />
-      <link rel="stylesheet" href="css/normalize.css" />
       <link rel="icon" href="favicon.png" />
   </head>
-  <body>
+  <body onload="app.getMessages()">
         
-        <h1 style="color :#395B64" >Mensajes en MongoDB, mediante Docker y AWS</h1>
+        <h1 style="color :#2c3e42" >Mensajes en MongoDB, mediante Docker y AWS</h1>
         <div>
-        <h2 style="color :#395B64" >Ingrese un nuevo mensaje:</h2>
-        <input type="text" placeholder="New message" id="Message" >
+        <h2 style="color :#2a3c41" >Ingrese un nuevo mensaje:</h2>
+        <input type="text" placeholder="New message" id="message" >
         <br><br>
-        <input id='boton-mesanje' type='button' value='Enviar mensaje' >"
+        <input id='boton-mensaje' type='button' onclick="app.addMessage()" value='Enviar mensaje' >
         </div>
-      <script src="js/app.js"></script>    
+        <br></br>
+        <div class="table" >
+            <table  id="table">
+                <tr>
+                    <th scope="col">MENSAJE</th>
+                    <th scope="col">FECHA</th>
+                </tr>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+      <script  type="text/javascript" src="js/app.js"></script>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </body>
 </html>
