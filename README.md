@@ -142,10 +142,36 @@ Al volver a generar la conexión los cambios realizados tendrán efecto.
 
 ![](img/dockerversion.png)
 
+Para construir la aplicación nuevamente ya en AWS, se deben obtener las imagenes, para esto se clonará el repositorio y mediante docker compose el cual debe ser instalado se desplegará:
+
+Para instalar git en EC2: https://cloudaffaire.com/how-to-install-git-in-aws-ec2-instance/
+
+Para instalar el comando docker-compose: https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9
+
+Clonamos el repositorio y ejecutamos docker-compose en la ubicación de la carpeta:
+
+![](img/gitclone.png)
+
+    docker-compose up -d
+
+![](img/dockercompose.png)
+
+Entramos al navegador con el puerto asociado:
+
+    http://ec2-54-88-224-69.compute-1.amazonaws.com:35000/
+
+![](img/aws-index.png)
+
+Se verifica que se pueda guardar un nuevo mensaje:
+
+![](img/aws-nuevo1.png)
+
+![](img/aws-nuevo2.png)
+
+
 ## Autores
 
 **Zuly Valentina Vargas Ramírez** 
-
 
 ## Licencia
 
