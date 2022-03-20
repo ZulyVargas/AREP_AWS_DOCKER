@@ -84,7 +84,63 @@ Se verifica que se recargan las cadenas ingresadas:
 
 ![](img/nuevoOk.png)
 
+### AWS:
 
+Para que la aplicación creada funcione desplegada en aws se deben subir las imagenes creadas localmente a un repositorio de Docker.
+
+Primero se usan los siguientes comandos para vincular las imagenes:
+
+    docker tag awsdocker/roundrobin zulyvargasr/roundrobin
+    docker tag awsdocker/logservice zulyvargasr/logservice
+
+Luego se suben a los respositorios:
+
+    docker push zulyvargasr/roundrobin:latest
+    docker push zulyvargasr/logservice:latest
+
+![](img/tag_push.png)  
+
+Verificación en Docker Hub:
+
+![](img/repos.png)
+
+Se debe modificar el nombre de las imagenes en el docker compose para que estas sean tomadas en línea y no localmente como se probó anteriormente:
+
+![](img/compose_aws.png) 
+
+Para el despliegue en AWS se ingresa a la consola dada por el portal educativo, se inicia el laboratorio y se da sobre AWS cuando esta se active. Luego de esto se busca entre los diferentes servicios  EC2:
+
+![](img/consolaaws.png) 
+
+Lanzar instancia -> Buscas -> Seleccionar
+
+![](img/maquina.png) 
+
+![](img/lanzar.png)
+
+Se crea un nuevo par de llaves y se descarga:
+
+![](img/parllaves.png)
+
+Configuamos los puertos:
+
+![](img/reglasentrada.png)
+
+Nos conectamos a la máquina:
+
+![](img/conexion.png)
+
+Se usan los siguientes comandos para descargar y correr Docker en la máquina virtual:
+
+    sudo yum install docker
+    sudo service docker start 
+    sudo usermod -a -G docker ec2-user
+    exit
+Al volver a generar la conexión los cambios realizados tendrán efecto.
+
+![](img/dockerinstall.png)
+
+![](img/dockerversion.png)
 
 ## Autores
 
