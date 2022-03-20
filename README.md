@@ -28,21 +28,25 @@ Para descargar el proyecto ejecute
    git clone https://github.com/ZulyVargas/AREP_AWS_DOCKER.git
 
 ## Documentación
-Para generar la documentación se debe ejecutar:
+Para generar la documentación se debe ejecutar en la ubicación de cada servicio:
 
     mvn javadoc:javadoc
 
 Esta quedará en la carpeta target/site/apidocs :
 
-![](img/javadocs.png)
+O diríjase a la siguiente dirección para cada servicio: 
+* [Documentación LBRoundRobin](https://github.com/ZulyVargas/AREP_AWS_DOCKER/tree/master/LBRoundRobin/documentacionLBRoundRobin)
 
-O diríjase a la siguiente dirección: 
-* [Documentación]()
+* [Documentación LogService](https://github.com/ZulyVargas/AREP_AWS_DOCKER/tree/master/LogService/documentacionLogService)
+
 
 ## Construido con 
 
 * [Maven](https://maven.apache.org/) - Administrador de dependencias
 * [Heroku](https://heroku.com) - Plataforma de despliegue
+* [Spark](https://sparkjava.com) - Micro framework para crear aplicaciones. 
+* [Docker](https://www.docker.com) - Herramienta que automatiza el despliegue de aplicaciones dentro de contenedores de software.
+* [AWS-EC2](https://aws.amazon.com/es/) - Permite a los usuarios alquilar computadores virtuales en los cuales pueden ejecutar sus propias aplicaciones.
 
 ## DESARROLLO PASO A PASO
 
