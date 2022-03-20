@@ -1,22 +1,20 @@
 var app = (function () {
-    var url = window.location.href+'results';
+var entrada =0;
     function addMessage(){
         var m =document.getElementById("message").value;
         console.log(m)
-        console.log("URL "+ url)
-        axios.post(url,m)
+        axios.post("/insert",m)
             .then(res => {
+                $("#Table > tbody").empty();
                 getMessages();
             })
     }
     function getMessages(){
-
         $("#Table > tbody").empty();
-        axios.get(url).then(res=>{
-            console.log(res.data)
+        axios.get("/results").then(res=>{
             res.data.map(message=>{
                 console.log(message)
-                $("#table > tbody").append(
+                $("#Table > tbody").append(
                     "<tr>" +
                     "<td>" + message.content + "</td>" +
                     "<td>" + message.date + "</td> " +

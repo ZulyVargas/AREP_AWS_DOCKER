@@ -6,8 +6,8 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 
 public class LBRoundRobin {
     private int currentServer = 0;
-    private String[] ports2 = {":35001",":35002",":35003"};
-    private String[] ports = {":4561",":4561",":4561"};
+    private String[] ports = {":35001",":35002",":35003"};
+    //private String[] ports = {":4561",":4561",":4561"};
     private String url = "http://localhost";
 
     /**
@@ -17,7 +17,7 @@ public class LBRoundRobin {
      */
     public String getMessages() throws UnirestException {
         HttpResponse<String> apiResponse = Unirest.get(url+ports[currentServer]+"/messages").asString();
-        System.out.println("peticion GET desde--------------- "+url+ports[currentServer]);
+        System.out.println("peticion GET desde--------------- "+url+ports[currentServer]+ "Longitud   " + apiResponse.getBody());
         return apiResponse.getBody();
     }
     /**
@@ -29,13 +29,13 @@ public class LBRoundRobin {
         HttpResponse<String> apiResponse = Unirest.post(url+ports[currentServer]+"/messages")
                 .body(message)
                 .asString();
-        System.out.println("peticion POST desde--------------- "+url+ports[currentServer]);
+        System.out.println("peticion POST desde--------------- "+url+ports[currentServer] + "Mesagge");
         return apiResponse.getBody();
     }
     /**
      * Switches between servers.
      */
-    public void changeNumberServer(){
+    public void changeServer(){
         currentServer=(currentServer + 1) % ports.length;
     }
 }

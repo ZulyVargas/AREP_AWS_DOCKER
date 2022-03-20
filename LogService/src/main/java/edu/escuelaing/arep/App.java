@@ -28,8 +28,6 @@ public class App
             connection.insertMessage(newMessage);
             return null;
         });
-
-
     }
 
     /**

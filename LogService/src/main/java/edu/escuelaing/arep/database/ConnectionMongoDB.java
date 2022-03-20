@@ -30,19 +30,9 @@ public class ConnectionMongoDB {
      */
     public ConnectionMongoDB() throws ParseException {
         //https://programmerclick.com/article/8253664516/
-
         uri = "mongodb+srv://admin:admin@cluster0.ko7ci.mongodb.net/?retryWrites=true&w=majority";
-
-        //mongoClient = new MongoClient(uri);
-
         ConnectionString connection = new ConnectionString(uri);
         this.mongoClient = MongoClients.create(connection);
-        /*for (int count = 10 ;  count <= 10; count-- ){
-            if (count < messages.size() )System.out.println(messages.get(count));
-        }*/
-
-
-
     }
     /**
      * Inserts a message in the database.
@@ -73,18 +63,16 @@ public class ConnectionMongoDB {
         for (Document doc : documents) {
             if (doc.get("content") != null && doc.get("date") != null) {
                 messages.add(new Message((String) doc.get("content"), (String)doc.get("date")));
-                //System.out.println("----Mensaje     "+ doc.get("content") + (Date) doc.get("date")) ;
             }
         }
         ArrayList<Message> messagesToShow = new ArrayList<Message>();
-
-        for (int count = 10 ;  count >0 && count <= 10; count -- ){
-            if (count < messages.size() ){
-                messagesToShow.add(messages.get(count));
-                System.out.println("----Mensaje     "+ messagesToShow.get(0).getDate() + messagesToShow.get(0).getContent()) ;}
+        int last = messages.size()-1;
+        for (int count = 10 ;  count > 0 && count <= 10 && 0<= last && last< messages.size() ; count -- ){
+                messagesToShow.add(messages.get(last));
+                last = last -1;
         }
+        for (Message m : messagesToShow)
+            System.out.println("----Mensaje"+ m.getDate() + m.getContent());
         return messagesToShow;
     }
-
-
 }
