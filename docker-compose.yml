@@ -3,7 +3,7 @@ version: '2'
 services:
 
     logservice1:
-        image: zulyvargasr/roundrobin:latest
+        image: zulyvargasr/logservice:latest
         container_name: logservice1
         ports:
             - "35001:6000"
@@ -22,7 +22,7 @@ services:
         ports:
             - "35003:6000"
     roundrobin:
-        image: zulyvargasr/logservice:latest
+        image: zulyvargasr/roundrobin:latest
         container_name: LBservice
         ports:
             - "35000:6000"
@@ -34,3 +34,7 @@ services:
             - "logservice1"
             - "logservice2"
             - "logservice3"
+			
+			
+			
+			
