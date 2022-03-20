@@ -64,9 +64,11 @@ Para este ejercicio se crearan 3 instancias para LogService. Primero se construy
 
 Se crea el archivo docker-file.compose para crear los contenedores correspondientes:
 
-    ![](img/compose.png)
+![](img/compose.png)
 
+Verificamos en Docker los contenedores creados:
 
+![](img/docker.png)
 
 
 ## Autores
