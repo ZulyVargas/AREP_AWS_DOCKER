@@ -16,6 +16,7 @@ public class LBRoundRobin {
      * @throws UnirestException - Some unirest error in the request.
      */
     public String getMessages() throws UnirestException {
+        System.out.println("URL generada "+ url+ports[currentServer]+"/messages" );
         HttpResponse<String> apiResponse = Unirest.get(url+ports[currentServer]+"/messages").asString();
         System.out.println("peticion GET desde--------------- "+url+ports[currentServer]+ "Longitud   " + apiResponse.getBody());
         return apiResponse.getBody();

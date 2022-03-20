@@ -44,7 +44,28 @@ O diríjase a la siguiente dirección:
 * [Maven](https://maven.apache.org/) - Administrador de dependencias
 * [Heroku](https://heroku.com) - Plataforma de despliegue
 
-##DESARROLLO PASO A PASO
+## DESARROLLO PASO A PASO
+
+1. Para realizar los contenedores correspondientes es necesario primero que todo crear los Dockerfile para cada servicio.
+2. Luego de creados los servicios se crean las imagenes con el comando **docker build**:
+
+LBRoundRobin:
+
+    docker build --tag awsdocker/roundrobin .
+
+![](img/rr-docker.png)
+
+
+LogService:
+
+Para este ejercicio se crearan 3 instancias para LogService. Primero se construye la imagen:
+    
+    docker build --tag awsdocker/logservice .
+
+Se crea el archivo docker-file.compose para crear los contenedores correspondientes:
+
+    ![](img/compose.png)
+
 
 
 

@@ -1,9 +1,9 @@
 var app = (function () {
 var entrada =0;
     function addMessage(){
+        var url=window.location.href+'insert';
         var m =document.getElementById("message").value;
-        console.log(m)
-        axios.post("/insert",m)
+        axios.post(url,m)
             .then(res => {
                 $("#Table > tbody").empty();
                 getMessages();
@@ -11,7 +11,8 @@ var entrada =0;
     }
     function getMessages(){
         $("#Table > tbody").empty();
-        axios.get("/results").then(res=>{
+        var url=window.location.href+'results';
+        axios.get(url).then(res=>{
             res.data.map(message=>{
                 console.log(message)
                 $("#Table > tbody").append(
