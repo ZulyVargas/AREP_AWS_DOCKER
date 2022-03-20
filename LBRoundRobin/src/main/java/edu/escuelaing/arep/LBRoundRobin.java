@@ -8,7 +8,9 @@ public class LBRoundRobin {
     private int currentServer = 0;
     private String[] ports = {":35001",":35002",":35003"};
     //private String[] ports = {":4561",":4561",":4561"};
-    private String url = "http://host.docker.internal";
+    //Para aws:
+    private String url = "http://ec2-54-88-224-69.compute-1.amazonaws.com";
+    //private String url = "http://host.docker.internal";
 
     /**
      * Performs the get request to the server connected to the database.
